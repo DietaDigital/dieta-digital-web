@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { sitePaused } from "@/lib/config";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -10,7 +11,13 @@ export const metadata: Metadata = {
     template: "%s | Dieta Digital"
   },
   description: site.description,
-  metadataBase: new URL(site.url)
+  metadataBase: new URL(site.url),
+  robots: sitePaused
+    ? {
+        index: false,
+        follow: false
+      }
+    : undefined
 };
 
 export default function RootLayout({
@@ -21,9 +28,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        <Header />
+        {sitePaused ? null : <Header />}
         <main>{children}</main>
-        <Footer />
+        {sitePaused ? null : <Footer />}
       </body>
     </html>
   );

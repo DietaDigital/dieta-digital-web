@@ -13,6 +13,16 @@ Sitio oficial de Dieta Digital, creado con Next.js, TypeScript y Tailwind CSS.
 
 Sin pagos, sin login y sin Supabase todavia.
 
+## Modo pausa
+
+El sitio esta oculto temporalmente con una pantalla de preparacion.
+
+Para volver a mostrar la landing completa, cambiar `sitePaused` a `false` en:
+
+```text
+lib/config.ts
+```
+
 ## Desarrollo local
 
 ```bash
