@@ -1,1 +1,1 @@
-export const sitePaused = true;
+export const sitePaused = false;
