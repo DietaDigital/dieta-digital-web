@@ -5,15 +5,15 @@ import { plans } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Precios",
-  description: "Planes de Dieta Digital para beta, uso personal y equipos."
+  description: "Planes de Dieta Digital para uso personal y equipos."
 };
 
 export default function PreciosPage() {
   return (
     <Section
       eyebrow="Precios"
-      title="Planes simples para empezar con calma."
-      description="Durante la primera etapa no hay pagos activos. La beta es el camino para probar la extension y ayudar a definir la version final."
+      title="Planes simples para personalizar tu feed."
+      description="Empeza gratis con las funciones esenciales. Las opciones avanzadas se sumaran cuando el producto lo necesite."
     >
       <div className="grid gap-5 md:grid-cols-3">
         {plans.map((plan) => (

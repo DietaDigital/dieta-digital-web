@@ -1,25 +1,27 @@
+import Image from "next/image";
 import { Button } from "@/components/Button";
 import { PricingCard } from "@/components/PricingCard";
 import { Section } from "@/components/Section";
 import { plans } from "@/lib/site";
 
-const feedSignals = [
-  { name: "Politica intensa", mode: "Reducir", value: 38 },
-  { name: "Productividad", mode: "Permitir", value: 86 },
-  { name: "Drama viral", mode: "Ocultar", value: 18 },
-  { name: "Aprendizaje", mode: "Priorizar", value: 74 }
+const settings = [
+  ["Ocultar contenido politico intenso", true],
+  ["Reducir drama viral", true],
+  ["Permitir aprendizaje y productividad", true],
+  ["Ocultar apuestas y contenido sensible", true],
+  ["Pausar filtro en este sitio", false]
 ];
 
 const problems = [
-  "El feed mezcla lo importante con lo impulsivo.",
-  "Las plataformas optimizan por retencion, no por bienestar.",
-  "Bloquear todo suele ser demasiado rigido para la vida real."
+  "El algoritmo mezcla lo que queres ver con lo que solo captura tu atencion.",
+  "Las redes no distinguen entre informarte, entretenerte y saturarte.",
+  "Bloquear toda una app suele ser demasiado extremo para el dia a dia."
 ];
 
 const steps = [
-  ["Elegis categorias", "Definis que temas queres reducir, ocultar o permitir."],
-  ["Ajustas intensidad", "No todo tiene que desaparecer: podes bajar el volumen del ruido."],
-  ["Navegas con intencion", "Tu feed se vuelve mas alineado con tu momento, energia y objetivos."]
+  ["Elegis categorias", "Seleccionas temas que queres permitir, reducir u ocultar."],
+  ["Ajustas tu nivel", "No todo tiene que desaparecer: podes bajar la intensidad."],
+  ["Usas redes con criterio", "El feed queda mas alineado con tu energia, objetivos y momento."]
 ];
 
 const categories = [
@@ -33,100 +35,131 @@ const categories = [
   "Bienestar"
 ];
 
-const blockers = [
-  ["Bloqueador comun", "Corta anuncios, popups o sitios completos."],
-  ["Dieta Digital", "Personaliza categorias del feed sin convertir internet en una pared."],
-  ["Control parental", "Impone limites desde afuera."],
-  ["Dieta Digital", "Parte de tus preferencias y de tu propio criterio."]
-];
-
 const faqs = [
   [
     "Dieta Digital bloquea internet?",
-    "No. La idea es reducir, ocultar o permitir tipos de contenido dentro de redes sociales, no apagar toda la web."
+    "No. Te ayuda a personalizar categorias de contenido dentro de redes sociales, sin apagar toda la web."
   ],
   [
     "Es un adblocker?",
-    "No esta pensado como bloqueador de anuncios clasico. Su foco es el consumo consciente del feed y el control de categorias."
+    "No es un bloqueador clasico de anuncios o popups. Su foco es el feed, las categorias y el consumo consciente."
   ],
   [
     "Es control parental?",
-    "No. Esta disenado para adultos que quieren ordenar su entorno digital sin vigilancia ni castigo."
+    "No. Esta pensado para personas que quieren decidir mejor que consumen, no para vigilar a otros."
   ],
   [
-    "Necesita cuenta?",
-    "En esta primera etapa no. Mas adelante podria haber login para sincronizar preferencias, pero todavia no esta implementado."
+    "Ya se puede usar?",
+    "Si. La primera version esta orientada a uso inicial de la extension y se ira mejorando con feedback real."
   ]
 ];
+
+function Toggle({ active }: { active: boolean }) {
+  return (
+    <span
+      className={`flex h-6 w-11 items-center rounded-full p-1 transition ${
+        active ? "bg-[#23864f]" : "bg-slate-300"
+      }`}
+    >
+      <span
+        className={`h-4 w-4 rounded-full bg-white shadow-sm transition ${
+          active ? "translate-x-5" : "translate-x-0"
+        }`}
+      />
+    </span>
+  );
+}
+
+function ProductPanel() {
+  return (
+    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-[0_22px_70px_rgba(31,45,37,0.14)]">
+      <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-4">
+        <div className="flex items-center gap-3">
+          <Image src="/logo.png" alt="" width={38} height={38} className="h-10 w-10" />
+          <div>
+            <div className="text-sm font-semibold text-slate-950">Dieta Digital</div>
+            <div className="text-xs text-slate-500">Personaliza tu experiencia</div>
+          </div>
+        </div>
+        <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-[#23864f]">
+          Activo
+        </span>
+      </div>
+
+      <div className="rounded-md border border-slate-200 bg-slate-50 p-4">
+        <div className="mb-3 flex items-center justify-between">
+          <div>
+            <div className="text-sm font-semibold text-slate-900">newtab</div>
+            <div className="mt-1 text-xs text-slate-500">4 categorias ajustadas en este sitio</div>
+          </div>
+          <Toggle active />
+        </div>
+        <button className="mt-3 flex w-full items-center justify-between rounded-md border border-slate-200 bg-white px-4 py-3 text-left text-sm font-semibold text-slate-800">
+          Personalizar contenido
+          <span aria-hidden="true">›</span>
+        </button>
+      </div>
+
+      <div className="mt-4 overflow-hidden rounded-md border border-slate-200">
+        <div className="grid grid-cols-2 border-b border-slate-200 text-center text-sm font-semibold">
+          <div className="border-b-2 border-[#23864f] px-4 py-3 text-slate-950">Preferencias</div>
+          <div className="px-4 py-3 text-slate-400">Estadisticas</div>
+        </div>
+        <div className="divide-y divide-slate-100">
+          {settings.map(([label, active]) => (
+            <div key={label as string} className="flex items-center justify-between gap-4 px-4 py-4">
+              <span className="text-sm font-medium text-slate-700">{label}</span>
+              <Toggle active={Boolean(active)} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
     <>
-      <section className="relative isolate min-h-[calc(100vh-73px)] overflow-hidden border-b border-mint/10">
-        <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(7,16,13,0.72),#07100d_88%)]" />
-        <div className="absolute left-1/2 top-12 -z-10 w-[64rem] -translate-x-1/2 rounded-xl border border-mint/10 bg-white/[0.035] p-4 opacity-70 shadow-glow md:top-20">
-          <div className="rounded-lg border border-mint/10 bg-ink/85 p-5">
-            <div className="mb-5 flex items-center justify-between border-b border-mint/10 pb-4">
-              <div>
-                <div className="text-sm font-semibold text-cream">Control del feed</div>
-                <div className="text-xs text-cream/48">Preferencias activas para esta sesion</div>
-              </div>
-              <div className="rounded-md bg-fern/16 px-3 py-1 text-xs font-semibold text-fern">
-                Calmo
-              </div>
-            </div>
-            <div className="grid gap-3 md:grid-cols-2">
-              {feedSignals.map((signal) => (
-                <div key={signal.name} className="rounded-md border border-mint/10 bg-white/[0.035] p-4">
-                  <div className="mb-3 flex items-center justify-between gap-3">
-                    <span className="text-sm font-medium text-cream">{signal.name}</span>
-                    <span className="text-xs text-cream/52">{signal.mode}</span>
-                  </div>
-                  <div className="h-2 rounded-full bg-white/8">
-                    <div className="h-2 rounded-full bg-fern" style={{ width: `${signal.value}%` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-auto flex min-h-[calc(100vh-73px)] max-w-6xl items-end px-5 pb-14 pt-28 md:pb-20">
-          <div className="max-w-4xl">
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-fern">
+      <section className="border-b border-slate-200 bg-white">
+        <div className="mx-auto grid min-h-[calc(100vh-73px)] max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.02fr_0.98fr] md:py-20">
+          <div>
+            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.25em] text-[#23864f]">
               Bienestar digital para redes sociales
             </p>
-            <h1 className="text-5xl font-semibold leading-[1.02] text-cream md:text-7xl">
-              Dieta Digital
+            <h1 className="max-w-3xl text-5xl font-semibold leading-[1.03] text-slate-950 md:text-7xl">
+              Controla tu feed sin bloquear tu vida digital.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-cream/74 md:text-xl">
-              Personaliza lo que ves en redes sociales. Reduce ruido, oculta categorias que te
-              saturan y permite contenido que si queres consumir.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
+              Dieta Digital es una extension para personalizar lo que ves en redes sociales:
+              reduce, oculta o permite categorias de contenido segun tus preferencias.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button href="/beta">Unirme a la beta</Button>
+              <Button href="/instalar">Instalar extension</Button>
               <Button href="/precios" variant="secondary">
                 Ver planes
               </Button>
             </div>
-            <div className="mt-10 grid max-w-2xl gap-3 text-sm text-cream/62 sm:grid-cols-3">
-              <span>Sin bloqueo total</span>
-              <span>Sin control parental</span>
+            <div className="mt-9 grid max-w-2xl gap-3 text-sm font-medium text-slate-500 sm:grid-cols-3">
               <span>Sin tono antivirus</span>
+              <span>Sin control parental</span>
+              <span>Sin bloqueo total</span>
             </div>
           </div>
+
+          <ProductPanel />
         </div>
       </section>
 
       <Section
         eyebrow="Problema"
         title="Tu feed no siempre trabaja para vos."
-        description="Las redes pueden ser utiles, pero tambien convierten cada pausa en una secuencia de impulsos. El problema no es internet: es la falta de control fino sobre lo que aparece."
+        description="Las plataformas optimizan por atencion. Dieta Digital parte de otra pregunta: que queres consumir realmente?"
       >
         <div className="grid gap-4 md:grid-cols-3">
           {problems.map((problem) => (
             <div key={problem} className="surface rounded-lg p-6">
-              <p className="text-lg leading-7 text-cream">{problem}</p>
+              <p className="text-lg leading-7 text-slate-700">{problem}</p>
             </div>
           ))}
         </div>
@@ -134,19 +167,19 @@ export default function Home() {
 
       <Section
         eyebrow="Solucion"
-        title="Un filtro personal para consumir contenido con mas intencion."
-        description="Dieta Digital no te obliga a desaparecer de las redes. Te da una capa de preferencias para que el algoritmo no sea el unico que decide tu dieta de informacion."
+        title="Personalizacion del algoritmo, no castigo digital."
+        description="No se trata de desaparecer de internet. Se trata de darle forma a tu entorno para consumir contenido con mas intencion."
       >
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-4">
           {[
-            ["Reducir", "Baja la frecuencia de temas que drenan atencion."],
+            ["Reducir", "Baja la frecuencia de temas que te saturan."],
             ["Ocultar", "Saca de vista categorias que preferis evitar."],
-            ["Permitir", "Mantiene visible lo que te aporta valor."],
-            ["Priorizar", "Da mas espacio a contenido alineado con tus objetivos."]
+            ["Permitir", "Mantiene visible lo que si queres ver."],
+            ["Priorizar", "Da mas espacio a contenido que te aporta."]
           ].map(([title, text]) => (
-            <div key={title} className="rounded-lg border border-mint/10 bg-white/[0.03] p-6">
-              <h3 className="text-xl font-semibold text-cream">{title}</h3>
-              <p className="mt-3 leading-7 text-cream/66">{text}</p>
+            <div key={title} className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+              <h3 className="text-xl font-semibold text-slate-950">{title}</h3>
+              <p className="mt-3 leading-7 text-slate-600">{text}</p>
             </div>
           ))}
         </div>
@@ -154,17 +187,17 @@ export default function Home() {
 
       <Section
         eyebrow="Como funciona"
-        title="Tres decisiones simples, un feed mas saludable."
-        description="La experiencia esta pensada para ser clara, reversible y menos extrema que un bloqueo completo."
+        title="Tres pasos simples."
+        description="La experiencia esta pensada para sentirse clara como una extension moderna: activar, ajustar y seguir navegando."
       >
         <div className="grid gap-5 md:grid-cols-3">
           {steps.map(([title, text], index) => (
             <article key={title} className="surface rounded-lg p-6">
-              <div className="mb-6 grid h-10 w-10 place-items-center rounded-md bg-fern/14 text-sm font-semibold text-fern">
+              <div className="mb-6 grid h-10 w-10 place-items-center rounded-md bg-emerald-50 text-sm font-semibold text-[#23864f]">
                 0{index + 1}
               </div>
-              <h3 className="text-xl font-semibold text-cream">{title}</h3>
-              <p className="mt-3 leading-7 text-cream/64">{text}</p>
+              <h3 className="text-xl font-semibold text-slate-950">{title}</h3>
+              <p className="mt-3 leading-7 text-slate-600">{text}</p>
             </article>
           ))}
         </div>
@@ -172,14 +205,14 @@ export default function Home() {
 
       <Section
         eyebrow="Categorias"
-        title="Control granular, no botones de panico."
-        description="La beta apunta a trabajar con categorias de contenido, no solo con dominios o listas negras."
+        title="Control granular para tu dieta de contenido."
+        description="A diferencia de un bloqueador comun, el centro no son los anuncios: son las categorias que moldean tu atencion."
       >
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {categories.map((category) => (
             <div
               key={category}
-              className="rounded-md border border-mint/10 bg-white/[0.035] px-4 py-5 text-sm font-medium text-cream/78"
+              className="rounded-md border border-slate-200 bg-white px-4 py-5 text-sm font-semibold text-slate-700 shadow-sm"
             >
               {category}
             </div>
@@ -189,21 +222,26 @@ export default function Home() {
 
       <Section
         eyebrow="Diferencial"
-        title="No compite por miedo. Compite por claridad."
-        description="Los bloqueadores comunes resuelven popups, anuncios o molestias tecnicas. Dieta Digital se ubica en otro lugar: bienestar digital, personalizacion del feed y consumo consciente."
+        title="No es adblocker clasico. No es antivirus. No es control parental."
+        description="Dieta Digital se enfoca en bienestar digital, personalizacion del feed, control del algoritmo y consumo consciente de contenido."
       >
         <div className="grid gap-4 md:grid-cols-2">
-          {blockers.map(([title, text], index) => (
+          {[
+            ["Bloqueadores comunes", "Cortan popups, anuncios o sitios completos."],
+            ["Dieta Digital", "Ajusta categorias de contenido sin apagar toda la experiencia."],
+            ["Control parental", "Impone limites desde afuera."],
+            ["Dieta Digital", "Parte de tus preferencias y de tu propio criterio."]
+          ].map(([title, text]) => (
             <div
-              key={`${title}-${index}`}
-              className={`rounded-lg border p-6 ${
+              key={`${title}-${text}`}
+              className={`rounded-lg border p-6 shadow-sm ${
                 title === "Dieta Digital"
-                  ? "border-fern/40 bg-fern/10"
-                  : "border-mint/10 bg-white/[0.025]"
+                  ? "border-[#23864f]/30 bg-emerald-50"
+                  : "border-slate-200 bg-white"
               }`}
             >
-              <h3 className="text-lg font-semibold text-cream">{title}</h3>
-              <p className="mt-3 leading-7 text-cream/66">{text}</p>
+              <h3 className="text-lg font-semibold text-slate-950">{title}</h3>
+              <p className="mt-3 leading-7 text-slate-600">{text}</p>
             </div>
           ))}
         </div>
@@ -211,8 +249,8 @@ export default function Home() {
 
       <Section
         eyebrow="Planes"
-        title="Primero beta, despues producto completo."
-        description="La prioridad es validar que la experiencia realmente ayude antes de activar pagos, login o sincronizacion."
+        title="Empeza gratis. Mejora cuando necesites mas control."
+        description="La primera version se enfoca en uso real de la extension. Las funciones avanzadas pueden sumarse despues sin complicar la experiencia inicial."
       >
         <div className="grid gap-5 md:grid-cols-3">
           {plans.map((plan) => (
@@ -224,17 +262,17 @@ export default function Home() {
       <Section
         eyebrow="Privacidad"
         title="Preferencias personales, no vigilancia."
-        description="La direccion del producto es clara: ayudarte a decidir mejor lo que ves, no observarte como un sistema de control."
+        description="El producto esta orientado a ayudarte a decidir que ves, no a monitorearte ni vender miedo."
       >
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            ["Sin cuenta en beta", "La primera etapa no necesita login."],
-            ["Datos minimos", "Solo lo necesario para gestionar acceso temprano."],
-            ["Preparado para futuro", "Supabase puede agregarse despues con reglas claras."]
+            ["Sin cuenta obligatoria", "La experiencia inicial puede funcionar con preferencias locales."],
+            ["Datos minimos", "Solo lo necesario para contacto y mejora del producto."],
+            ["Preparado para crecer", "Supabase puede agregarse despues con reglas claras."]
           ].map(([title, text]) => (
             <div key={title} className="surface rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-cream">{title}</h3>
-              <p className="mt-3 leading-7 text-cream/64">{text}</p>
+              <h3 className="text-lg font-semibold text-slate-950">{title}</h3>
+              <p className="mt-3 leading-7 text-slate-600">{text}</p>
             </div>
           ))}
         </div>
@@ -243,32 +281,34 @@ export default function Home() {
       <Section
         eyebrow="Preguntas frecuentes"
         title="Lo importante, sin vueltas."
-        description="Dieta Digital todavia esta en etapa inicial, pero la posicion del producto ya esta definida."
+        description="Dieta Digital no intenta reemplazar tu criterio: te da herramientas para aplicarlo mejor."
       >
         <div className="grid gap-3">
           {faqs.map(([question, answer]) => (
             <details key={question} className="surface rounded-lg p-5">
-              <summary className="cursor-pointer text-lg font-semibold text-cream">{question}</summary>
-              <p className="mt-4 leading-7 text-cream/66">{answer}</p>
+              <summary className="cursor-pointer text-lg font-semibold text-slate-950">
+                {question}
+              </summary>
+              <p className="mt-4 leading-7 text-slate-600">{answer}</p>
             </details>
           ))}
         </div>
       </Section>
 
       <section className="mx-auto max-w-6xl px-5 py-16 md:py-24">
-        <div className="rounded-lg border border-fern/35 bg-fern/10 p-8 text-center shadow-glow md:p-12">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-fern">
-            Beta privada
+        <div className="rounded-lg border border-[#23864f]/25 bg-emerald-50 p-8 text-center shadow-sm md:p-12">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-[#23864f]">
+            Disponible para usar
           </p>
-          <h2 className="text-3xl font-semibold leading-tight text-cream md:text-5xl">
-            Probemos una forma mas consciente de usar redes.
+          <h2 className="text-3xl font-semibold leading-tight text-slate-950 md:text-5xl">
+            Dale forma a lo que consumis cada dia.
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl leading-7 text-cream/70">
-            Sumate a la beta y ayudanos a construir una extension que no te trate como un problema,
-            sino como alguien que quiere elegir mejor.
+          <p className="mx-auto mt-5 max-w-2xl leading-7 text-slate-600">
+            Instala Dieta Digital y empeza a ajustar tu feed con una logica mas consciente,
+            flexible y personal.
           </p>
           <div className="mt-8 flex justify-center">
-            <Button href="/beta">Unirme a la beta</Button>
+            <Button href="/instalar">Instalar extension</Button>
           </div>
         </div>
       </section>

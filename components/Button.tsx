@@ -10,8 +10,8 @@ type ButtonProps = {
 export function Button({ href, children, variant = "primary" }: ButtonProps) {
   const styles =
     variant === "primary"
-      ? "bg-fern text-ink hover:bg-mint"
-      : "border border-mint/20 bg-white/5 text-cream hover:border-fern/50 hover:bg-white/10";
+      ? "bg-[#23864f] text-white shadow-sm hover:bg-[#1b6f42]"
+      : "border border-slate-200 bg-white text-slate-800 hover:border-[#23864f]/40 hover:bg-emerald-50";
 
   return (
     <Link

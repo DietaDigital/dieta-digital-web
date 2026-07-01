@@ -3,41 +3,41 @@ export const site = {
   description:
     "Extension de navegador para personalizar lo que ves en redes sociales sin bloquear internet.",
   url: "https://dietadigital.app",
-  email: "contacto@dietadigital.app",
+  email: "hellodigitaldiet@gmail.com",
   nav: [
     { label: "Precios", href: "/precios" },
-    { label: "Beta", href: "/beta" },
+    { label: "Instalar", href: "/instalar" },
     { label: "Contacto", href: "/contacto" }
   ]
 };
 
 export const plans = [
   {
-    name: "Beta",
+    name: "Gratis",
     price: "$0",
-    description: "Para probar Dieta Digital antes del lanzamiento oficial.",
+    description: "Para empezar a personalizar tu feed con filtros esenciales.",
     features: [
-      "Acceso anticipado",
       "Filtros por categorias de contenido",
       "Preferencias locales en el navegador",
-      "Feedback directo para mejorar el producto"
+      "Reduccion u ocultamiento de temas",
+      "Sin cuenta obligatoria"
     ],
-    cta: "Unirme a la beta",
-    href: "/beta",
+    cta: "Instalar extension",
+    href: "/instalar",
     featured: true
   },
   {
     name: "Personal",
     price: "Proximamente",
-    description: "Para usuarios que quieren una experiencia digital mas calma.",
+    description: "Para usuarios que quieren mas control, perfiles y estadisticas.",
     features: [
       "Perfiles de preferencias",
       "Listas de permitir y ocultar",
       "Estadisticas simples",
       "Sin vender tus datos personales"
     ],
-    cta: "Ver beta",
-    href: "/beta",
+    cta: "Usar gratis",
+    href: "/instalar",
     featured: false
   },
   {
