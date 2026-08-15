@@ -1,10 +1,10 @@
-const checkoutUrl = "https://tu-tienda.lemonsqueezy.com/checkout/buy/reemplazar";
+const checkoutUrl = "https://digitaldiet.lemonsqueezy.com/checkout/buy/5d0eb7a6-ebc5-49f4-b618-90f972d35dbe";
 
 export const site = {
   name: "Dieta Digital",
   description:
     "Extension freemium para personalizar lo que ves en redes sociales sin bloquear internet.",
-  url: "https://dietadigital.app",
+  url: "https://dieta-digital-web.vercel.app",
   email: "hellodigitaldiet@gmail.com",
   chromeStoreUrl: "/instalar",
   checkoutUrl,
@@ -33,14 +33,14 @@ export const plans = [
   },
   {
     name: "Pro",
-    price: "",
+    price: "$3.99 / mes",
     description: "Para desbloquear todas las categorias y listas ilimitadas.",
     features: [
-      "Todas las categorias de contenido",
+      "Todas las 19 categorias de contenido",
+      "Subtemas personalizados por categoria",
       "Listas personales sin limite",
-      "Activacion por email y licencia",
-      "Estadisticas simples",
-      "Preparado para suscripcion con Lemon Squeezy"
+      "Activacion instantanea por email y licencia",
+      "Estadisticas de contenidos filtrados"
     ],
     cta: "Go Pro",
     href: checkoutUrl,
