@@ -22,7 +22,14 @@ export default function TerminosPage() {
         <h2 className="mt-8 text-xl font-semibold text-slate-950">Disponibilidad</h2>
         <p className="mt-3">
           La extension puede cambiar, incluir errores o modificar funciones mientras evoluciona.
-          No hay pagos activos en esta etapa.
+          Las funciones gratis y Pro pueden ajustarse con nuevas versiones, manteniendo una
+          descripcion clara en la pagina de precios.
+        </p>
+        <h2 className="mt-8 text-xl font-semibold text-slate-950">Plan Pro, pagos y reembolsos</h2>
+        <p className="mt-3">
+          El plan Pro desbloquea funciones adicionales mediante una licencia o suscripcion. Los
+          pagos se procesan fuera de la extension en un proveedor seguro. Las condiciones de
+          reembolso se mostraran en la pagina de compra y en el proveedor de pago correspondiente.
         </p>
         <h2 className="mt-8 text-xl font-semibold text-slate-950">Responsabilidad</h2>
         <p className="mt-3">

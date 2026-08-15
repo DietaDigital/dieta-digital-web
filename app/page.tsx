@@ -5,11 +5,11 @@ import { Section } from "@/components/Section";
 import { plans } from "@/lib/site";
 
 const settings = [
-  ["Ocultar contenido politico intenso", true],
-  ["Reducir drama viral", true],
-  ["Permitir aprendizaje y productividad", true],
-  ["Ocultar apuestas y contenido sensible", true],
-  ["Pausar filtro en este sitio", false]
+  ["Ocultar sexualizacion", true],
+  ["Ocultar violencia", true],
+  ["Reducir humor repetitivo", true],
+  ["Listas personales hasta 3 items", true],
+  ["Todas las categorias con Pro", false]
 ];
 
 const problems = [
@@ -25,14 +25,14 @@ const steps = [
 ];
 
 const categories = [
+  "Sexualizacion",
+  "Violencia",
+  "Humor",
+  "Apuestas",
+  "Influencers",
   "Politica",
   "Noticias",
-  "Apuestas",
-  "Drama viral",
-  "Contenido sensible",
-  "Productividad",
-  "Aprendizaje",
-  "Bienestar"
+  "Compras"
 ];
 
 const faqs = [
@@ -131,19 +131,19 @@ export default function Home() {
               Controla tu feed sin bloquear tu vida digital.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-              Dieta Digital es una extension para personalizar lo que ves en redes sociales:
-              reduce, oculta o permite categorias de contenido segun tus preferencias.
+              Dieta Digital es una extension freemium para personalizar lo que ves en redes
+              sociales: gratis para filtros esenciales y Pro para desbloquear mas control.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button href="/instalar">Instalar extension</Button>
               <Button href="/precios" variant="secondary">
-                Ver planes
+                Ver Gratis y Pro
               </Button>
             </div>
             <div className="mt-9 grid max-w-2xl gap-3 text-sm font-medium text-slate-500 sm:grid-cols-3">
-              <span>Sin tono antivirus</span>
+              <span>Gratis para empezar</span>
               <span>Sin control parental</span>
-              <span>Sin bloqueo total</span>
+              <span>Pro desbloquea todo</span>
             </div>
           </div>
 
@@ -190,7 +190,7 @@ export default function Home() {
         title="Tres pasos simples."
         description="La experiencia esta pensada para sentirse clara como una extension moderna: activar, ajustar y seguir navegando."
       >
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="mx-auto grid max-w-4xl gap-5 md:grid-cols-2">
           {steps.map(([title, text], index) => (
             <article key={title} className="surface rounded-lg p-6">
               <div className="mb-6 grid h-10 w-10 place-items-center rounded-md bg-emerald-50 text-sm font-semibold text-[#23864f]">
@@ -206,7 +206,7 @@ export default function Home() {
       <Section
         eyebrow="Categorias"
         title="Control granular para tu dieta de contenido."
-        description="A diferencia de un bloqueador comun, el centro no son los anuncios: son las categorias que moldean tu atencion."
+        description="El plan gratis incluye Sexualizacion, Violencia y Humor. Pro suma el resto de categorias y listas ilimitadas."
       >
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {categories.map((category) => (
@@ -249,8 +249,8 @@ export default function Home() {
 
       <Section
         eyebrow="Planes"
-        title="Empeza gratis. Mejora cuando necesites mas control."
-        description="La primera version se enfoca en uso real de la extension. Las funciones avanzadas pueden sumarse despues sin complicar la experiencia inicial."
+        title="Empeza gratis. Pasa a Pro cuando necesites mas control."
+        description="El plan gratis sirve para empezar de verdad. Pro desbloquea todas las categorias, listas personales sin limite y activacion por licencia."
       >
         <div className="grid gap-5 md:grid-cols-3">
           {plans.map((plan) => (
@@ -268,7 +268,7 @@ export default function Home() {
           {[
             ["Sin cuenta obligatoria", "La experiencia inicial puede funcionar con preferencias locales."],
             ["Datos minimos", "Solo lo necesario para contacto y mejora del producto."],
-            ["Preparado para crecer", "Supabase puede agregarse despues con reglas claras."]
+            ["Preparado para crecer", "La sincronizacion y el login pueden agregarse despues con reglas claras."]
           ].map(([title, text]) => (
             <div key={title} className="surface rounded-lg p-6">
               <h3 className="text-lg font-semibold text-slate-950">{title}</h3>

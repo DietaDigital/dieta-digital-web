@@ -1,9 +1,13 @@
+const checkoutUrl = "https://tu-tienda.lemonsqueezy.com/checkout/buy/reemplazar";
+
 export const site = {
   name: "Dieta Digital",
   description:
-    "Extension de navegador para personalizar lo que ves en redes sociales sin bloquear internet.",
+    "Extension freemium para personalizar lo que ves en redes sociales sin bloquear internet.",
   url: "https://dietadigital.app",
   email: "hellodigitaldiet@gmail.com",
+  chromeStoreUrl: "/instalar",
+  checkoutUrl,
   nav: [
     { label: "Precios", href: "/precios" },
     { label: "Instalar", href: "/instalar" },
@@ -15,43 +19,31 @@ export const plans = [
   {
     name: "Gratis",
     price: "$0",
-    description: "Para empezar a personalizar tu feed con filtros esenciales.",
+    description: "Para empezar con filtros esenciales y limites simples.",
     features: [
-      "Filtros por categorias de contenido",
+      "Sexualizacion, Violencia y Humor incluidos",
+      "Mostrar, reducir u ocultar categorias gratis",
+      "Hasta 3 perfiles, palabras o paginas por lista",
       "Preferencias locales en el navegador",
-      "Reduccion u ocultamiento de temas",
       "Sin cuenta obligatoria"
     ],
     cta: "Instalar extension",
     href: "/instalar",
-    featured: true
+    featured: false
   },
   {
-    name: "Personal",
-    price: "Proximamente",
-    description: "Para usuarios que quieren mas control, perfiles y estadisticas.",
+    name: "Pro",
+    price: "",
+    description: "Para desbloquear todas las categorias y listas ilimitadas.",
     features: [
-      "Perfiles de preferencias",
-      "Listas de permitir y ocultar",
+      "Todas las categorias de contenido",
+      "Listas personales sin limite",
+      "Activacion por email y licencia",
       "Estadisticas simples",
-      "Sin vender tus datos personales"
+      "Preparado para suscripcion con Lemon Squeezy"
     ],
-    cta: "Usar gratis",
-    href: "/instalar",
-    featured: false
-  },
-  {
-    name: "Equipos",
-    price: "Proximamente",
-    description: "Para equipos que buscan foco sin vigilancia invasiva.",
-    features: [
-      "Configuraciones compartidas",
-      "Politicas de bienestar digital",
-      "Soporte prioritario",
-      "Sin enfoque de control parental"
-    ],
-    cta: "Contactar",
-    href: "/contacto",
-    featured: false
+    cta: "Go Pro",
+    href: checkoutUrl,
+    featured: true
   }
 ];

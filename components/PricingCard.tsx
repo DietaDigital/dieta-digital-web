@@ -23,7 +23,7 @@ export function PricingCard({ plan }: PricingCardProps) {
         <h3 className="text-xl font-semibold text-slate-950">{plan.name}</h3>
         <p className="mt-2 min-h-12 text-sm leading-6 text-slate-600">{plan.description}</p>
       </div>
-      <div className="mb-6 text-3xl font-semibold text-slate-950">{plan.price}</div>
+      {plan.price ? <div className="mb-6 text-3xl font-semibold text-slate-950">{plan.price}</div> : null}
       <Button href={plan.href} variant={plan.featured ? "primary" : "secondary"}>
         {plan.cta}
       </Button>
