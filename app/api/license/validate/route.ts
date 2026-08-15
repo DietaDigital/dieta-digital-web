@@ -45,8 +45,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Llamada a la API de Validación de Licencias de Lemon Squeezy
-    const lsResponse = await fetch("https://api.lemonsqueezy.com/v1/licenses/validate", {
+    // Llamada a la API de Lemon Squeezy para activar/validar la licencia
+    let lsResponse = await fetch("https://api.lemonsqueezy.com/v1/licenses/activate", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -58,9 +58,25 @@ export async function POST(request: Request) {
       }),
     });
 
-    const data = await lsResponse.json();
+    let data = await lsResponse.json();
 
-    if (data.valid && data.license_key && data.license_key.status === "active") {
+    // Si ya estaba activada, consultamos con validate
+    if (!data.valid) {
+      const validateResponse = await fetch("https://api.lemonsqueezy.com/v1/licenses/validate", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          license_key: licenseKey,
+          instance_name: email || "Chrome Extension",
+        }),
+      });
+      data = await validateResponse.json();
+    }
+
+    if (data.valid && data.license_key && data.license_key.status !== "disabled" && data.license_key.status !== "expired") {
       const expiresAt = data.license_key.expires_at || null;
       const isExpired = expiresAt ? new Date(expiresAt).getTime() < Date.now() : false;
 
