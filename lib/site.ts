@@ -6,7 +6,7 @@ export const site = {
     "Extension freemium para personalizar lo que ves en redes sociales sin bloquear internet.",
   url: "https://dieta-digital-web.vercel.app",
   email: "hellodigitaldiet@gmail.com",
-  chromeStoreUrl: "/instalar",
+  chromeStoreUrl: "https://chromewebstore.google.com/detail/dieta-digital/cgdmlneaegadlbfkbhnfckoloabaoncl",
   checkoutUrl,
   nav: [
     { label: "Precios", href: "/precios" },

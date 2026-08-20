@@ -32,14 +32,13 @@ export default function InstalarPage() {
           </div>
         </div>
         <aside className="surface rounded-lg p-6 md:p-8">
-          <h3 className="text-xl font-semibold text-slate-950">Instalacion</h3>
+          <h3 className="text-xl font-semibold text-slate-950">Instalacion Oficial</h3>
           <p className="mt-4 leading-7 text-slate-600">
-            Mientras preparamos la publicacion en Chrome Web Store, podemos probarla cargandola como
-            extension descomprimida. Cuando la ficha este aprobada, este boton apuntara a la tienda.
+            Dieta Digital ya esta publicada y verificada oficialmente en la tienda de extensiones de Google Chrome.
           </p>
           <div className="mt-7">
-            <Button href={`mailto:${site.email}?subject=Quiero instalar Dieta Digital`}>
-              Pedir enlace de instalacion
+            <Button href={site.chromeStoreUrl} target="_blank" rel="noopener noreferrer">
+              Instalar desde Chrome Web Store
             </Button>
           </div>
         </aside>
